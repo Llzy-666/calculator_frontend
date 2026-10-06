@@ -1,0 +1,74 @@
+*{
+    box-sizing: border-box;
+    font-family: system-ui;
+}
+.main-wrap{
+    display:flex;
+    gap:40px;
+    width:900px;
+    margin:40px auto;
+}
+/* 左侧计算器 */
+.calc-box{
+    width:420px;
+}
+#inputExpr{
+    width:100%;
+    height:60px;
+    font-size:28px;
+    text-align:right;
+    padding:8px 12px;
+    margin-bottom:12px;
+}
+.btn-group{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap:8px;
+}
+.btn-group button{
+    height:60px;
+    font-size:22px;
+    border:none;
+    border-radius:4px;
+    background:#eee;
+    cursor:pointer;
+}
+.btn-group button.equal{
+    background:#4285f4;
+    color:white;
+}
+/* 右侧历史 */
+.history-box{
+    flex:1;
+}
+.search-area{
+    margin-bottom:10px;
+}
+#searchKey{
+    width:70%;
+    padding:6px;
+    font-size:16px;
+}
+.history-control{
+    margin-bottom:10px;
+}
+#historyList{
+    border:1px solid #ccc;
+    padding:10px;
+    min-height:300px;
+    max-height:400px;
+    overflow-y:auto;
+}
+.history-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:6px 0;
+    border-bottom:1px solid #eee;
+}
+.page-control{
+    margin-top:10px;
+}
+.page-control button{
+    padding:4px 10px;
+}

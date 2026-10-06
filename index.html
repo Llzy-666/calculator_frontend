@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>前后端分离计算器</title>
+    <style>
+        *{box-sizing:border-box;font-family:system-ui;margin:0;padding:0}
+        body{display:flex;gap:60px;justify-content:center;margin-top:50px;align-items:flex-start}
+        .calc{width:360px}
+        #inputExpr{width:100%;padding:16px;font-size:26px;text-align:right;margin-bottom:14px;border:1px solid #d1d1d1;border-radius:8px;outline:none}
+        .btn-grid{display:grid;grid-template-columns:repeat(4, 1fr);gap:10px}
+        button{
+            padding:14px;
+            font-size:18px;
+            border:none;
+            border-radius:8px;
+            cursor:pointer;
+            background:#eeeeee;
+            transition: 0.2s;
+        }
+        button:hover{background:#dddddd}
+        .eq{
+            background:#4080ff;
+            color:white;
+            /* 单列，不跨行列 */
+            padding:14px;
+        }
+        .eq:hover{background:#2b6ede}
+        .func{background:#cccccc}
+        .func:hover{background:#bbbbbb}
+
+        /* 历史区域样式 */
+        .history{width:460px}
+        .history h2{margin-bottom:12px;text-align:center}
+        .search-bar{
+            display:flex;
+            gap:8px;
+            align-items:center;
+            margin-bottom:12px;
+        }
+        #searchKey{
+            flex:1;
+            padding:8px;
+            font-size:16px;
+            border:1px solid #ccc;
+            border-radius:6px;
+        }
+        .search-bar button{
+            padding:8px 14px;
+            font-size:15px;
+        }
+        .history-item{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            padding:10px 6px;
+            border-bottom:1px solid #ddd;
+            font-size:15px;
+        }
+        .page-bar{
+            margin-top:12px;
+            display:flex;
+            gap:10px;
+            align-items:center;
+            justify-content:center;
+        }
+    </style>
+</head>
+<body>
+    <div class="calc">
+        <h2 style="text-align:center;margin-bottom:14px">计算器</h2>
+        <input id="inputExpr" readonly>
+        <div class="btn-grid">
+            <button class="func" onclick="append('(')">(</button>
+            <button class="func" onclick="append(')')">)</button>
+            <button class="func" onclick="clearEntry()">CE</button>
+            <button class="func" onclick="clearAll()">C</button>
+
+            <button onclick="append('7')">7</button>
+            <button onclick="append('8')">8</button>
+            <button onclick="append('9')">9</button>
+            <button onclick="append('/')">÷</button>
+
+            <button onclick="append('4')">4</button>
+            <button onclick="append('5')">5</button>
+            <button onclick="append('6')">6</button>
+            <button onclick="append('*')">×</button>
+
+            <button onclick="append('1')">1</button>
+            <button onclick="append('2')">2</button>
+            <button onclick="append('3')">3</button>
+            <button onclick="append('-')">-</button>
+
+            <button onclick="append('0')">0</button>
+            <button onclick="append('.')">.</button>
+            <button onclick="append('+')">+</button>
+            <button class="eq" onclick="calcSubmit()">=</button>
+        </div>
+    </div>
+
+    <div class="history">
+        <h2>计算历史</h2>
+        <div class="search-bar">
+            <input id="searchKey" placeholder="搜索表达式" />
+            <button onclick="loadHistory()">搜索</button>
+            <button onclick="clearAllHistory()">清空全部历史</button>
+        </div>
+        <div id="historyList"></div>
+        <div class="page-bar">
+            <button id="prevBtn" onclick="prevPage()">上一页</button>
+            <span id="pageInfo"></span>
+            <button id="nextBtn" onclick="nextPage()">下一页</button>
+        </div>
+    </div>
+
+<script src="script.js"></script>
+</body>
+</html>
